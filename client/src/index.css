@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,
+html {
+   font-family: "poppins", sans-serif;
+   font-weight: 400;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+   outline: 0 !important;
+   box-shadow: none !important;
+}
+
+.flex-colo {
+   @apply flex flex-col justify-center items-center;
+}
+.center {
+   @apply flex justify-center items-center;
+}
+.flex-rows {
+   @apply flex flex-row justify-center items-center;
+}
+.flex-btn {
+   @apply flex justify-between items-center;
+}
+.transitions {
+   @apply transition duration-300 ease-in;
+}
+.zIndex {
+   z-index: 1000;
+}
+.hoveres {
+   @apply hidden;
+}
+.hovered:hover .hoveres {
+   @apply flex-colo;
+}
+.linear-bg {
+   background: linear-gradient(269.82deg, #07091c00 0.17%, #080a1ad6 99.87%);
+}
+
+/* Drawer */
+.drawer {
+   position: fixed;
+   z-index: 9999;
+   overflow: visible;
+   width: 0; /* Initially hidden */
+   height: 100vh;
+   top: 0;
+   right: 0;
+   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for the overlay */
+   transition: width 0s ease 0.3s, height 0s ease 0.3s, transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
+
+.drawer .drawer-content-wrapper {
+   width: 100%;
+   height: 100%;
+   background-color: #fff; /* Drawer background */
+   transform: translateX(100%); /* Initially off-screen */
+   transition: transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
+
+/* Open state */
+.drawer.open {
+   width: 100vw; /* Full width for overlay */
+}
+
+.drawer.open .drawer-content-wrapper {
+   transform: translateX(0); /* Slide into view */
+}
+
+/* Close state */
+.drawer.close {
+   width: 0;
+}
+
+.drawer.close .drawer-content-wrapper {
+   transform: translateX(100%); /* Slide out of view */
+}
+
+/* Responsiveness */
+@media (min-width: 768px) {
+   .drawer .drawer-content-wrapper {
+      width: 400px; /* Fixed width for larger screens */
+   }
+
+   .drawer.open {
+      width: 400px; /* Restrict overlay width */
+   }
+}
+
+@media (min-width: 1024px) {
+   .drawer .drawer-content-wrapper {
+      width: 500px; /* Increase width for even larger screens */
+   }
+
+   .drawer.open {
+      width: 500px;
+   }
+}
